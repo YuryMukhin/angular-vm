@@ -1,0 +1,21 @@
+<div class="card  mb-3" style="min-width: 250px;">
+  <h5 class="card-header text-light bg-success">
+    {{user.firstName}} {{user.lastName}}
+    <a routerLinkActive="active"
+       [routerLink]="['/customers/create/', user.id]">
+      <i-feather name="edit"></i-feather>
+    </a>
+  </h5>
+  <div class="card-body">
+    <div class="col-md-5">
+      <i-feather class="card-img" name="camera"></i-feather>
+    </div>
+    <div class="col-md-7">
+      <p class="card-text">{{user.city + ', ' + user.age}}</p>
+    </div>
+  </div>
+  <div class="card-footer text-muted">
+    <a class="card-text" (click)="onClick()" routerLinkActive="active"
+      [routerLink]="['/vacations/', user.id]">Vacations</a>
+  </div>
+</div>

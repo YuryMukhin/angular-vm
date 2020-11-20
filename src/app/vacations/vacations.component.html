@@ -1,0 +1,47 @@
+<div class="container row" style="margin: 1%;">
+  <div class="col-4">
+    <app-vacation-request [(vacation)]="vacationRow"></app-vacation-request>
+  </div>
+  <div class="col-5">
+    <table class="table table-hover">
+      <thead>
+        <tr class="table-success">
+          <th scope="col">Employee</th>
+          <th scope="col">From</th>
+          <th scope="col">To</th>
+          <th scope="col">Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of vacations$ | async | paginate : {
+              itemsPerPage: tableSize,
+              currentPage: page,
+              totalItems: count
+            }; 
+            let i = index" [class.active]=" i == currentIndex " (click)="edit(row);">
+          <td *ngFor="let column of rows">
+            {{row[column]}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  <div class="row">
+    <div class="col">
+      <pagination-controls responsive="true" previousLabel="" nextLabel="" (pageChange)="onTableDataChange($event)">
+      </pagination-controls>
+    </div>
+
+    <div class="col-3">
+      <select (change)="onTableSizeChange($event)" class="custom-select">
+        <option *ngFor="let size of tableSizes" [ngValue]="size">
+          {{ size }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-2">
+    </div>
+
+  </div>
+</div>
+</div>
